@@ -1,0 +1,16 @@
+{
+  "name": "ecom-flow",
+  "version": "0.0.1",
+  "description": "An ecommerce management solution for local ecommerce solopreneurs",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/os-moussao/ecom-flow.git"
+  },
+  "author": {
+    "name": "Oussama Moussaoui",
+    "url": "https://github.com/os-moussao",
+    "email": "omoussaoui1337@gmail.com"
+  }
+}
