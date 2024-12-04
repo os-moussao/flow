@@ -17,5 +17,8 @@
     "name": "Oussama Moussaoui",
     "url": "https://github.com/os-moussao",
     "email": "omoussaoui1337@gmail.com"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }
