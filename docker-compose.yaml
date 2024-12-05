@@ -1,0 +1,10 @@
+services:
+  server:
+    build:
+      context: .
+      target: dev
+    container_name: flow-backend
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
