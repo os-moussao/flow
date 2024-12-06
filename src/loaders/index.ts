@@ -1,7 +1,9 @@
-import { Express, Request, Response } from 'express';
+import { Express } from 'express';
+import expressLoader from './express.loader';
 
-export async function loader(app: Express) {
-  app.use((req: Request, res: Response) => {
-    res.status(200).json({ message: 'Hello World !' });
-  });
+async function loader(app: Express) {
+  expressLoader(app);
+  console.log('Express app loaded...');
 }
+
+export default loader;
