@@ -34,8 +34,6 @@ RUN npm run build
 ###### DEV ######
 FROM base AS dev
 
-ENV NODE_ENV=development
-
 COPY --chown=appuser:appgroup . .
 
 EXPOSE 3000
