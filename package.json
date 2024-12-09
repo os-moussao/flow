@@ -7,7 +7,12 @@
     "build": "npx tsc",
     "start": "node dist/main.js",
     "start:dev": "nodemon -w ./src -w .env src/main.ts",
-    "lint": "prettier --write \"src/**/*.ts\""
+    "lint": "prettier --write \"src/**/*.ts\"",
+    "typeorm": "npm run build && ts-node ./node_modules/typeorm/cli.js -d dist/db/data-source.js",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "migration:drop": "npm run typeorm -- schema:drop"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -22,6 +27,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
     "nodemon": "^3.1.7",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },

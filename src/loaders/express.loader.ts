@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import config from '../config';
 import routeNotFoundMiddleware from '../middlewares/route-not-found.middleware';
 import errorFilterMiddleware from '../middlewares/error-filter.middleware';
+import router from './routes.loader';
 
 function expressLoader(app: Express) {
   // todo: health check endpoints
@@ -20,10 +21,7 @@ function expressLoader(app: Express) {
   // also req.ip = original client ip, after this config
   // app.enable('trust proxy')
 
-  // todo: implement router
-  app.use(config.apiPrefix, (_, res) => {
-    res.json({ message: 'todo: router', env: config.nodeEnv });
-  });
+  app.use(config.apiPrefix, router);
 
   // todo: API Documentation middleware
   app.use(routeNotFoundMiddleware);
