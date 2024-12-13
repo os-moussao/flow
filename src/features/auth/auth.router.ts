@@ -1,17 +1,19 @@
-import { Router } from 'express';
+import { Request, Router } from 'express';
+import passport from 'passport';
+import './strategies/google.strategy';
+import { generateAccessToken } from './auth.service';
 
 const authRouter = Router();
 
-authRouter.get('/login', (req, res) => {
-  res.json('login');
-});
+authRouter.get('/google', passport.authenticate('google'));
 
-authRouter.get('/logout', (req, res) => {
-  res.json('logout');
-});
-
-authRouter.get('/refresh', (req, res) => {
-  res.json('refresh');
-});
+authRouter.get(
+  '/google/callback',
+  passport.authenticate('google', { session: false }),
+  async (req, res) => {
+    const token = await generateAccessToken(req.user.id);
+    res.json(token);
+  },
+);
 
 export default authRouter;
