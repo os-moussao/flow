@@ -7,6 +7,7 @@ import errorFilterMiddleware from '../middlewares/error-filter.middleware';
 import router from './routes.loader';
 import 'express-async-errors';
 import '../features/auth/strategies/google.strategy';
+import '../features/auth/strategies/access-token.strategy';
 import passport from 'passport';
 
 function expressLoader(app: Express) {
