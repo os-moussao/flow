@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { userRepository } from '../../db/repositories';
-import { authenticate } from '../auth/strategies/access-token.strategy';
+import { authenticate } from '../auth/middlewares/auth.middleware';
 
 const usersRouter = Router();
 

@@ -1,12 +1,10 @@
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import config from '../../../config';
-import { userRepository } from '../../../db/repositories';
-import { RequestHandler } from 'express';
-import { User } from '../../../models/user.entity';
+import { refreshTokenRepository } from '../../../db/repositories';
 
 passport.use(
-  'access-token',
+  'refresh-token',
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -14,9 +12,15 @@ passport.use(
     },
     async (payload, done) => {
       const userId: number = payload.sub;
-      const user = await userRepository.findOneBy({ id: userId });
-      if (!user) return done('invalid credentials', false);
-      done(null, user);
+      const id = payload.jti;
+
+      if (!userId || !id) return done('unauthorized', false);
+
+      const token = await refreshTokenRepository.findOneBy({ id, userId });
+
+      if (!token) return done('unauthorized', false);
+
+      done(null, { id: userId });
     },
   ),
 );

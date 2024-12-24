@@ -27,7 +27,9 @@ const config = {
     googleClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
     accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
-    accessTokenDuration: process.env.ACCESS_TOKEN_DURATION,
+    accessTokenDurationSec: +process.env.ACCESS_TOKEN_DURATION_SEC,
+    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+    refreshTokenDurationSec: +process.env.REFRESH_TOKEN_DURATION_SEC,
   },
 };
 
