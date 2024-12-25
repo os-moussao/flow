@@ -1,7 +1,5 @@
 import { OpenAPIV3 } from 'openapi-types';
 
-// fix json formatting
-
 const usersEndpoints: OpenAPIV3.PathsObject = {
   '/api/v1/users': {
     get: {
@@ -17,12 +15,7 @@ const usersEndpoints: OpenAPIV3.PathsObject = {
                   users: {
                     type: 'array',
                     items: {
-                      type: 'object',
-                      properties: {
-                        id: { type: 'number' },
-                        email: { type: 'string' },
-                        name: { type: 'string' },
-                      },
+                      $ref: '#/components/schemas/User',
                     },
                   },
                 },
