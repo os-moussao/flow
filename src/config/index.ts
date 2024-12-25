@@ -2,7 +2,7 @@ import { config as loadEnv } from 'dotenv';
 
 const envFound = loadEnv();
 
-if (envFound.error) {
+if (process.env.NODE_ENV !== 'production' && envFound.error) {
   console.log(`\x1b[31mFATAL: cannot find .env file \x1b[0m`);
   process.exit(1);
 }
@@ -15,6 +15,10 @@ const config = {
       process.env.SERVER_BASE_URL ??
       `http://localhost:${process.env.PORT ?? 3000}`,
     prefix: '/api',
+    docs: {
+      user: process.env.API_DOCS_USER,
+      password: process.env.API_DOCS_PASSWORD,
+    },
   },
   database: {
     host: process.env.DB_HOST,
