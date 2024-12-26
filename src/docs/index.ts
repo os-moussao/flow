@@ -31,10 +31,27 @@ const openApiDocs: OpenAPIV3.Document = {
           phone: { type: 'string' },
           isAdmin: { type: 'boolean' },
           jobId: { type: 'number' },
-          job: { type: 'object' },
+          job: { $ref: '#/components/schemas/Job' },
           createdAt: { type: 'string' },
           deletedAt: { type: 'string' },
         },
+      },
+      Job: {
+        type: 'object',
+        properties: {
+          id: { type: 'number' },
+          title: { type: 'string' },
+          description: { type: 'string' },
+          permissions: {
+            type: 'array',
+            items: { $ref: '#/components/schemas/Permission' },
+          },
+          deletedAt: { type: 'string' },
+        },
+      },
+      Permission: {
+        type: 'string',
+        enum: ['READ', 'WRITE'],
       },
     },
   },
