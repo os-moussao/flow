@@ -1,6 +1,6 @@
 import { OpenAPIV3 } from 'openapi-types';
 import usersEndpoints from '../features/users/users.docs';
-import { User } from '../models/user.entity';
+import authEndpoints from '../features/auth/auth.docs';
 
 const openApiDocs: OpenAPIV3.Document = {
   openapi: '3.0.0',
@@ -11,13 +11,38 @@ const openApiDocs: OpenAPIV3.Document = {
   tags: [{ name: 'Auth' }, { name: 'Users' }],
   paths: {
     ...usersEndpoints,
+    ...authEndpoints,
   },
   components: {
+    securitySchemes: {
+      AccessToken: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      RefreshToken: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
     schemas: {
       ApiError: {
         type: 'object',
         properties: {
           errorCode: { type: 'string' },
+        },
+      },
+      AuthTokens: {
+        type: 'object',
+        properties: {
+          accessToken: { type: 'string' },
+          accessTokenExpiresIn: { type: 'number', description: 'In Seconds' },
+          refreshToken: { type: 'string' },
+          refreshTokenExpiresIn: {
+            type: 'number',
+            description: 'In Seconds',
+          },
         },
       },
       User: {

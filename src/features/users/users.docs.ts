@@ -4,6 +4,7 @@ const usersEndpoints: OpenAPIV3.PathsObject = {
   '/api/v1/users': {
     get: {
       tags: ['Users'],
+      security: [{ AccessToken: [] }],
       responses: {
         200: {
           description: 'List of users',
@@ -19,6 +20,24 @@ const usersEndpoints: OpenAPIV3.PathsObject = {
                     },
                   },
                 },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  '/api/v1/users/me': {
+    get: {
+      tags: ['Users'],
+      security: [{ AccessToken: [] }],
+      responses: {
+        200: {
+          description: 'Logged user',
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/User',
               },
             },
           },
